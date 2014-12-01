@@ -1,11 +1,21 @@
-package com.geekhub.lakhmaniuk.rssreader;
+package com.geekhub.lakhmaniuk.rssreader.fragment;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+
+import com.geekhub.lakhmaniuk.rssreader.R;
+import com.geekhub.lakhmaniuk.rssreader.adapter.CustomListAdapter;
+import com.geekhub.lakhmaniuk.rssreader.model.FeedItem;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -14,49 +24,47 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.app.Activity;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 
-import com.geekhub.lakhmaniuk.rssreader.adapter.CustomListAdapter;
-import com.geekhub.lakhmaniuk.rssreader.model.FeedItem;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
-public class FeedListActivity extends Activity {
-
+/**
+ * Created by Miho on 01.12.2014.
+ */
+public class FeedListFragment extends Fragment {
     private ArrayList<FeedItem> feedList = null;
     private ProgressBar progressbar = null;
     private ListView feedListView = null;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_posts_list);
-        progressbar = (ProgressBar) findViewById(R.id.progressBar);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_posts_list,
+                container, false);
+        progressbar = (ProgressBar) view.findViewById(R.id.progressBar);
         String url = "http://javatechig.com/api/get_category_posts/?dev=1&slug=android";
         new DownloadFilesTask().execute(url);
+        return view;
     }
 
     public void updateList() {
-        feedListView= (ListView) findViewById(R.id.custom_list);
+        feedListView= (ListView) getActivity().findViewById(R.id.custom_list);
         feedListView.setVisibility(View.VISIBLE);
         progressbar.setVisibility(View.GONE);
 
-        feedListView.setAdapter(new CustomListAdapter(this, feedList));
-        feedListView.setOnItemClickListener(new OnItemClickListener() {
+        feedListView.setAdapter(new CustomListAdapter(getActivity(), feedList));
+        feedListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position,	long id) {
                 Object o = feedListView.getItemAtPosition(position);
                 FeedItem newsData = (FeedItem) o;
 
-                Intent intent = new Intent(FeedListActivity.this, FeedDetailsActivity.class);
+                Intent intent;
+                intent = new Intent(FeedListFragment.this, FeedDetailsFragment.class);
                 intent.putExtra("feed", newsData);
                 startActivity(intent);
             }
@@ -165,5 +173,4 @@ public class FeedListActivity extends Activity {
             e.printStackTrace();
         }
     }
-
 }

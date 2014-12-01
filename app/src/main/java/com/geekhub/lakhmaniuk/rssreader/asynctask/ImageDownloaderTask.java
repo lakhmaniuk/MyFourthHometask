@@ -1,4 +1,4 @@
-package com.geekhub.lakhmaniuk.rssreader.asynctaask;
+package com.geekhub.lakhmaniuk.rssreader.asynctask;
 
 import java.io.InputStream;
 import java.lang.ref.WeakReference;

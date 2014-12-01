@@ -1,4 +1,4 @@
-package com.geekhub.lakhmaniuk.rssreader;
+package com.geekhub.lakhmaniuk.rssreader.adapter;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.geekhub.lakhmaniuk.rssreader.asynctaask.ImageDownloaderTask;
+
+import com.geekhub.lakhmaniuk.rssreader.R;
+import com.geekhub.lakhmaniuk.rssreader.asynctask.ImageDownloaderTask;
 import com.geekhub.lakhmaniuk.rssreader.model.FeedItem;
 
 public class CustomListAdapter extends BaseAdapter {

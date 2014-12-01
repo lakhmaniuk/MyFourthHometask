@@ -1,45 +1,51 @@
-package com.geekhub.lakhmaniuk.rssreader;
+package com.geekhub.lakhmaniuk.rssreader.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.geekhub.lakhmaniuk.rssreader.R;
+import com.geekhub.lakhmaniuk.rssreader.WebViewActivity;
 import com.geekhub.lakhmaniuk.rssreader.asynctask.ImageDownloaderTask;
 import com.geekhub.lakhmaniuk.rssreader.model.FeedItem;
 
-public class FeedDetailsActivity extends Activity {
-
+/**
+ * Created by Miho on 01.12.2014.
+ */
+public class FeedDetailsFragment extends Fragment {
     private FeedItem feed;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feed_details);
-
-        feed = (FeedItem) this.getIntent().getSerializableExtra("feed");
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_feed_details,
+                container, false);
+        feed = (FeedItem) getActivity().getIntent().getSerializableExtra("feed");
 
         if (null != feed) {
-            ImageView thumb = (ImageView) findViewById(R.id.featuredImg);
+            ImageView thumb = (ImageView) view.findViewById(R.id.featuredImg);
             new ImageDownloaderTask(thumb).execute(feed.getAttachmentUrl());
 
-            TextView title = (TextView) findViewById(R.id.title);
+            TextView title = (TextView) view.findViewById(R.id.title);
             title.setText(feed.getTitle());
 
-            TextView htmlTextView = (TextView) findViewById(R.id.content);
+            TextView htmlTextView = (TextView) view.findViewById(R.id.content);
             htmlTextView.setText(Html.fromHtml(feed.getContent(), null, null));
         }
+        return view;
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override
@@ -49,7 +55,8 @@ public class FeedDetailsActivity extends Activity {
                 shareContent();
                 return true;
             case R.id.menu_view:
-                Intent intent = new Intent(FeedDetailsActivity.this, WebViewActivity.class);
+                Intent intent;
+                intent = new Intent(FeedDetailsFragment.this, WebViewFragment.class);
                 intent.putExtra("url", feed.getUrl());
                 startActivity(intent);
 
@@ -67,4 +74,5 @@ public class FeedDetailsActivity extends Activity {
         startActivity(Intent.createChooser(sendIntent, "Share using"));
 
     }
+
 }

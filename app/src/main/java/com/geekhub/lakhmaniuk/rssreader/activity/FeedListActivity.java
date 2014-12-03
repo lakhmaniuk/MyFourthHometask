@@ -76,14 +76,14 @@ public class FeedListActivity extends Activity {
 //        @Override
 //        protected void onProgressUpdate(Integer... values) {
 //        }
-//
+
 //        @Override
 //        protected void onPostExecute(Void result) {
 //            if (null != feedList) {
 //                updateList();
 //            }
 //        }
-//
+
 //        @Override
 //        protected Void doInBackground(String... params) {
 //            String url = params[0];

@@ -1,11 +1,14 @@
 package com.geekhub.lakhmaniuk.rssreader.activity;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.geekhub.lakhmaniuk.rssreader.R;
+import com.geekhub.lakhmaniuk.rssreader.fragment.FeedListFragment;
+import com.geekhub.lakhmaniuk.rssreader.fragment.WebViewFragment;
 
 public class WebViewActivity extends Activity {
     private WebView webView;
@@ -15,24 +18,28 @@ public class WebViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_webview);
 
-        webView = (WebView) findViewById(R.id.webView);
-        webView.setWebViewClient(new MyWebViewClient());
+        WebViewFragment fragment = new WebViewFragment();
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().add(R.id.webview_fragment, fragment).commit();
 
-        Bundle bundle = this.getIntent().getExtras();
-        String url = bundle.getString("url");
-
-        if (null != url) {
-            webView.getSettings().setJavaScriptEnabled(true);
-            webView.loadUrl(url);
-        }
+//        webView = (WebView) findViewById(R.id.webView);
+//        webView.setWebViewClient(new MyWebViewClient());
+//
+//        Bundle bundle = this.getIntent().getExtras();
+//        String url = bundle.getString("url");
+//
+//        if (null != url) {
+//            webView.getSettings().setJavaScriptEnabled(true);
+//            webView.loadUrl(url);
+//        }
     }
 
-    private class MyWebViewClient extends WebViewClient {
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return true;
-        }
-    }
+//    private class MyWebViewClient extends WebViewClient {
+//        @Override
+//        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//            view.loadUrl(url);
+//            return true;
+//        }
+//    }
 
 }

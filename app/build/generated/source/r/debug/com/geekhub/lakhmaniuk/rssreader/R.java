@@ -30,26 +30,28 @@ public final class R {
         public static final int list_selector_flatcolor=0x7f020004;
     }
     public static final class id {
-        public static final int content=0x7f090004;
-        public static final int custom_list=0x7f090006;
-        public static final int date=0x7f090009;
+        public static final int content=0x7f090005;
+        public static final int custom_list=0x7f090007;
+        public static final int date=0x7f09000a;
         public static final int details_fragment=0x7f090000;
-        public static final int featuredImg=0x7f090002;
+        public static final int featuredImg=0x7f090003;
         public static final int list_fragment=0x7f090001;
-        public static final int menu_share=0x7f09000a;
-        public static final int menu_view=0x7f09000b;
-        public static final int progressBar=0x7f090005;
-        public static final int thumbImage=0x7f090008;
-        public static final int title=0x7f090003;
-        public static final int webView=0x7f090007;
+        public static final int menu_share=0x7f09000b;
+        public static final int menu_view=0x7f09000c;
+        public static final int progressBar=0x7f090006;
+        public static final int thumbImage=0x7f090009;
+        public static final int title=0x7f090004;
+        public static final int webView=0x7f090008;
+        public static final int webview_fragment=0x7f090002;
     }
     public static final class layout {
         public static final int activity_details=0x7f030000;
         public static final int activity_list=0x7f030001;
-        public static final int fragment_feed_details=0x7f030002;
-        public static final int fragment_posts_list=0x7f030003;
-        public static final int fragment_webview=0x7f030004;
-        public static final int list_row_layout=0x7f030005;
+        public static final int activity_webview=0x7f030002;
+        public static final int fragment_feed_details=0x7f030003;
+        public static final int fragment_posts_list=0x7f030004;
+        public static final int fragment_webview=0x7f030005;
+        public static final int list_row_layout=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f080000;

@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.geekhub.lakhmaniuk.rssreader.R;
+import com.geekhub.lakhmaniuk.rssreader.activity.FeedDetailsActivity;
 import com.geekhub.lakhmaniuk.rssreader.adapter.CustomListAdapter;
 import com.geekhub.lakhmaniuk.rssreader.model.FeedItem;
 
@@ -55,20 +56,20 @@ public class FeedListFragment extends Fragment {
         feedListView.setVisibility(View.VISIBLE);
         progressbar.setVisibility(View.GONE);
 
-//        feedListView.setAdapter(new CustomListAdapter(getActivity(), feedList));
-//        feedListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> a, View v, int position,	long id) {
-//                Object o = feedListView.getItemAtPosition(position);
-//                FeedItem newsData = (FeedItem) o;
-//
-//                Intent intent;
-//                intent = new Intent(FeedListFragment.this, FeedDetailsFragment.class);
-//                intent.putExtra("feed", newsData);
-//                startActivity(intent);
-//            }
-//        });
+        feedListView.setAdapter(new CustomListAdapter(getActivity(), feedList));
+        feedListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position,	long id) {
+                Object o = feedListView.getItemAtPosition(position);
+                FeedItem newsData = (FeedItem) o;
+
+                Intent intent;
+                intent = new Intent(getActivity(), FeedDetailsActivity.class);
+                intent.putExtra("feed", newsData);
+                startActivity(intent);
+            }
+        });
     }
 
     private class DownloadFilesTask extends AsyncTask<String, Integer, Void> {

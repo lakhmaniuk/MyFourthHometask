@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.geekhub.lakhmaniuk.rssreader">
+    package="com.geekhub.lakhmaniuk.rssreader"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="20" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".activity.FeedListActivity"
+            android:name="com.geekhub.lakhmaniuk.rssreader.activity.FeedListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,12 +25,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.FeedDetailsActivity"
+            android:name="com.geekhub.lakhmaniuk.rssreader.activity.FeedDetailsActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".activity.WebViewActivity"
+            android:name="com.geekhub.lakhmaniuk.rssreader.activity.WebViewActivity"
             android:label="@string/app_name" >
         </activity>
     </application>
+
 </manifest>

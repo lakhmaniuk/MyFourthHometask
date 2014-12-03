@@ -2,7 +2,7 @@ package com.geekhub.lakhmaniuk.rssreader.fragment;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,7 +42,7 @@ public class FeedListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_posts_list,
+        View view = inflater.inflate(R.layout.fragment_posts_list,
                 container, false);
         progressbar = (ProgressBar) view.findViewById(R.id.progressBar);
         String url = "http://javatechig.com/api/get_category_posts/?dev=1&slug=android";
@@ -55,20 +55,20 @@ public class FeedListFragment extends Fragment {
         feedListView.setVisibility(View.VISIBLE);
         progressbar.setVisibility(View.GONE);
 
-        feedListView.setAdapter(new CustomListAdapter(getActivity(), feedList));
-        feedListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> a, View v, int position,	long id) {
-                Object o = feedListView.getItemAtPosition(position);
-                FeedItem newsData = (FeedItem) o;
-
-                Intent intent;
-                intent = new Intent(FeedListFragment.this, FeedDetailsFragment.class);
-                intent.putExtra("feed", newsData);
-                startActivity(intent);
-            }
-        });
+//        feedListView.setAdapter(new CustomListAdapter(getActivity(), feedList));
+//        feedListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> a, View v, int position,	long id) {
+//                Object o = feedListView.getItemAtPosition(position);
+//                FeedItem newsData = (FeedItem) o;
+//
+//                Intent intent;
+//                intent = new Intent(FeedListFragment.this, FeedDetailsFragment.class);
+//                intent.putExtra("feed", newsData);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     private class DownloadFilesTask extends AsyncTask<String, Integer, Void> {

@@ -2,7 +2,7 @@ package com.geekhub.lakhmaniuk.rssreader.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.geekhub.lakhmaniuk.rssreader.R;
-import com.geekhub.lakhmaniuk.rssreader.WebViewActivity;
 import com.geekhub.lakhmaniuk.rssreader.asynctask.ImageDownloaderTask;
 import com.geekhub.lakhmaniuk.rssreader.model.FeedItem;
 
@@ -24,9 +23,10 @@ import com.geekhub.lakhmaniuk.rssreader.model.FeedItem;
 public class FeedDetailsFragment extends Fragment {
     private FeedItem feed;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_feed_details,
+        View view = inflater.inflate(R.layout.fragment_feed_details,
                 container, false);
         feed = (FeedItem) getActivity().getIntent().getSerializableExtra("feed");
 
@@ -48,31 +48,31 @@ public class FeedDetailsFragment extends Fragment {
         inflater.inflate(R.menu.main, menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_share:
-                shareContent();
-                return true;
-            case R.id.menu_view:
-                Intent intent;
-                intent = new Intent(FeedDetailsFragment.this, WebViewFragment.class);
-                intent.putExtra("url", feed.getUrl());
-                startActivity(intent);
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void shareContent() {
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, feed.getTitle() + "\n" + feed.getUrl());
-        sendIntent.setType("text/plain");
-        startActivity(Intent.createChooser(sendIntent, "Share using"));
-
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.menu_share:
+//                shareContent();
+//                return true;
+//            case R.id.menu_view:
+//                Intent intent;
+//                intent = new Intent(FeedDetailsFragment.this, WebViewFragment.class);
+//                intent.putExtra("url", feed.getUrl());
+//                startActivity(intent);
+//
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+//
+//    private void shareContent() {
+//        Intent sendIntent = new Intent();
+//        sendIntent.setAction(Intent.ACTION_SEND);
+//        sendIntent.putExtra(Intent.EXTRA_TEXT, feed.getTitle() + "\n" + feed.getUrl());
+//        sendIntent.setType("text/plain");
+//        startActivity(Intent.createChooser(sendIntent, "Share using"));
+//
+//    }
 
 }

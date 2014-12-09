@@ -1,6 +1,7 @@
 package com.geekhub.lakhmaniuk.rssreader.fragment;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.text.Html;
@@ -42,37 +43,5 @@ public class FeedDetailsFragment extends Fragment {
         }
         return view;
     }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.main, menu);
-    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.menu_share:
-//                shareContent();
-//                return true;
-//            case R.id.menu_view:
-//                Intent intent;
-//                intent = new Intent(FeedDetailsFragment.this, WebViewFragment.class);
-//                intent.putExtra("url", feed.getUrl());
-//                startActivity(intent);
-//
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-//
-//    private void shareContent() {
-//        Intent sendIntent = new Intent();
-//        sendIntent.setAction(Intent.ACTION_SEND);
-//        sendIntent.putExtra(Intent.EXTRA_TEXT, feed.getTitle() + "\n" + feed.getUrl());
-//        sendIntent.setType("text/plain");
-//        startActivity(Intent.createChooser(sendIntent, "Share using"));
-//
-//    }
 
 }

@@ -4,18 +4,13 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
+
 
 import com.geekhub.lakhmaniuk.rssreader.R;
-import com.geekhub.lakhmaniuk.rssreader.asynctask.ImageDownloaderTask;
 import com.geekhub.lakhmaniuk.rssreader.fragment.FeedDetailsFragment;
-import com.geekhub.lakhmaniuk.rssreader.fragment.FeedListFragment;
-import com.geekhub.lakhmaniuk.rssreader.fragment.WebViewFragment;
 import com.geekhub.lakhmaniuk.rssreader.model.FeedItem;
 
 public class FeedDetailsActivity extends Activity {
@@ -30,6 +25,7 @@ public class FeedDetailsActivity extends Activity {
         FeedDetailsFragment fragment = new FeedDetailsFragment();
         FragmentManager fm = getFragmentManager();
         fm.beginTransaction().add(R.id.details_fragment, fragment).commit();
+
     }
 
     @Override
@@ -64,4 +60,6 @@ public class FeedDetailsActivity extends Activity {
         startActivity(Intent.createChooser(sendIntent, "Share using"));
 
     }
+
+
 }

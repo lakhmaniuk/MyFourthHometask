@@ -1,5 +1,6 @@
 package com.geekhub.lakhmaniuk.rssreader.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.ProgressBar;
 
 import com.geekhub.lakhmaniuk.rssreader.R;
 import com.geekhub.lakhmaniuk.rssreader.activity.FeedDetailsActivity;
+import com.geekhub.lakhmaniuk.rssreader.activity.FeedListActivity;
 import com.geekhub.lakhmaniuk.rssreader.adapter.CustomListAdapter;
 import com.geekhub.lakhmaniuk.rssreader.model.FeedItem;
 
@@ -37,9 +39,24 @@ import java.util.ArrayList;
  * Created by Miho on 01.12.2014.
  */
 public class FeedListFragment extends Fragment {
+
     private ArrayList<FeedItem> feedList = null;
     private ProgressBar progressbar = null;
     private ListView feedListView = null;
+    EventOnListFragment mCallback;
+
+
+    //This interface implement MainActivity
+    public interface EventOnListFragment {
+        public void eventClickOnListFragment(int position);
+    }
+    private EventOnListFragment event = null;
+
+    public void setEvent(EventOnListFragment event) {
+        this.event = event;
+    }
+
+    EventOnListFragment action;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +66,22 @@ public class FeedListFragment extends Fragment {
         String url = "http://javatechig.com/api/get_category_posts/?dev=1&slug=android";
         new DownloadFilesTask().execute(url);
         return view;
+    }
+
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        action = (EventOnListFragment) activity;
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (EventOnListFragment) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
     }
 
     public void updateList() {
